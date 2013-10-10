@@ -5,27 +5,16 @@ library(jpeg)
 library(reshape2)
 library(ggplot2)
 
-setwd("C:/etc/Projects/Data/_Ongoing/Image Manipulation")
-
 imageurl <- "http://farm4.staticflickr.com/3724/9416396550_2d5770cffa_b.jpg"
 download.file(imageurl, "images/baseimage.jpg", mode = "wb")
 
-LoadImageAsRGB <- function(imagefile){
-	baseimage <- readJPEG(imagefile)
-	#This is a height x width x 3(rgb) array
-	longimage <- melt(baseimage, varnames=c("y","x","rgb"), value.name="value" )
-	rgbimage <- reshape(longimage, timevar = "rgb",
-						idvar = c("x", "y"), direction = "wide")
-	colnames(rgbimage) <- c("y","x","r","g","b")
-	rgbimage$y <- -rgbimage$y #plotting axes have origin on bottom-left
-	rgbimage
-}
-
+source('scripts/elementaryFunctions.R')
 image.base <- LoadImageAsRGB("images/baseimage.jpg") #y,x,r,g,b
 
 
 #### Plot the same image ####
 with(image.base, plot(x, y, col = rgb(r,g,b), asp = 1, pch = "."))
+
 #which is short for:
 plot(image.base$x, image.base$y,
 	 col = rgb(image.base$r,image.base$g,image.base$b),
@@ -62,7 +51,4 @@ g2 + geom_point() + scale_color_identity() +
 	theme(legend.position = "none") 
 
 
-
-
-################
 
