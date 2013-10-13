@@ -1,4 +1,5 @@
-Image Manipulation Exercises
+Image Manipulation Exercises in R
+=================================
 
 
 Basic Manipulation
