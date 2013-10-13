@@ -1,4 +1,6 @@
 
+require(jpeg)
+require(reshape2)
 
 LoadImageAsRGB <- function(imagefile){
 	baseimage <- readJPEG(imagefile)

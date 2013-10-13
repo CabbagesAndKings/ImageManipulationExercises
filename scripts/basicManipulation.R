@@ -1,5 +1,7 @@
-
 #Basic Image Manipulation
+
+# Load an image, display it
+# Perform basic manipulations
 
 library(jpeg)
 library(reshape2)
